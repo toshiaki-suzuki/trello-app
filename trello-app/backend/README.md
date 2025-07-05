@@ -1,84 +1,84 @@
-# Trello App Backend
+# Trello App バックエンド
 
-A NestJS-based backend API for a Trello-like task management application.
+Trello風タスク管理アプリケーション用のNestJSベースバックエンドAPI
 
-## Features
+## 機能
 
-- **Boards**: Create and manage project boards
-- **Lists**: Organize tasks into customizable lists
-- **Cards**: Create detailed task cards with descriptions and due dates
-- **TypeORM**: Database operations with SQLite
-- **CORS**: Cross-origin resource sharing enabled
+- **ボード**: プロジェクトボードの作成と管理
+- **リスト**: カスタマイズ可能なリストでタスクを整理
+- **カード**: 説明と期限付きの詳細なタスクカードの作成
+- **TypeORM**: SQLiteを使用したデータベース操作
+- **CORS**: クロスオリジンリソース共有を有効化
 
-## Tech Stack
+## 技術スタック
 
-- **Framework**: NestJS
-- **Database**: SQLite with TypeORM
-- **Language**: TypeScript
-- **Runtime**: Node.js
+- **フレームワーク**: NestJS
+- **データベース**: SQLite with TypeORM
+- **言語**: TypeScript
+- **ランタイム**: Node.js
 
-## Installation
+## インストール
 
 ```bash
 npm install
 ```
 
-## Development
+## 開発
 
 ```bash
-# Start development server
+# 開発サーバーを起動
 npm run start:dev
 
-# Start with debug mode
+# デバッグモードで起動
 npm run start:debug
 ```
 
-## Production
+## 本番環境
 
 ```bash
-# Build the application
+# アプリケーションをビルド
 npm run build
 
-# Start production server
+# 本番サーバーを起動
 npm run start:prod
 ```
 
-## Testing
+## テスト
 
 ```bash
-# Run unit tests
+# 単体テストを実行
 npm test
 
-# Run tests in watch mode
+# ウォッチモードでテストを実行
 npm test:watch
 
-# Run tests with coverage
+# カバレッジ付きでテストを実行
 npm test:cov
 
-# Run e2e tests
+# E2Eテストを実行
 npm run test:e2e
 ```
 
-## API Endpoints
+## APIエンドポイント
 
-The server runs on port 3001 by default.
+サーバーはデフォルトでポート3001で動作します。
 
-### Data Model
+### データモデル
 
-- **Board**: Contains multiple lists, has title, description, and background color
-- **List**: Belongs to a board, contains multiple cards, has position ordering
-- **Card**: Belongs to a list, has title, description, position, and optional due date
+- **Board**: 複数のリストを含み、タイトル、説明、背景色を持つ
+- **List**: ボードに属し、複数のカードを含み、位置順序を持つ
+- **Card**: リストに属し、タイトル、説明、位置、オプションの期限を持つ
 
-## Project Structure
+## プロジェクト構造
 
 ```
 src/
-├── entities/          # TypeORM entities
+├── entities/          # TypeORMエンティティ
 │   ├── board.entity.ts
 │   ├── list.entity.ts
 │   └── card.entity.ts
-├── app.controller.ts   # Main controller
-├── app.module.ts      # Main module
-├── app.service.ts     # Main service
-└── main.ts           # Application entry point
+├── app.controller.ts   # メインコントローラー
+├── app.module.ts      # メインモジュール
+├── app.service.ts     # メインサービス
+└── main.ts           # アプリケーションエントリーポイント
 ```
