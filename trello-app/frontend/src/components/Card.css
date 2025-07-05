@@ -4,8 +4,19 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 12px;
   margin-bottom: 8px;
-  cursor: pointer;
-  transition: box-shadow 0.2s ease;
+  cursor: grab;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+  user-select: none;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card.dragging {
+  opacity: 0.5;
+  transform: rotate(3deg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {

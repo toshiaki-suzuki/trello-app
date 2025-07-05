@@ -7,6 +7,13 @@
   margin-right: 12px;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list.drag-over {
+  background-color: #ddd;
+  box-shadow: 0 4px 8px rgba(0, 121, 191, 0.3);
+  border: 2px dashed #0079bf;
 }
 
 .list-header {

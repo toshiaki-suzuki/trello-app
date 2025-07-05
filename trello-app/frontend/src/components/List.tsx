@@ -18,6 +18,9 @@ interface ListProps {
   onDeleteCard?: (cardId: string) => void;
   onEditList?: (listId: string) => void;
   onDeleteList?: (listId: string) => void;
+  onCardDrop?: (cardId: string, sourceListId: string, targetListId: string) => void;
+  onCardDragStart?: (cardId: string, sourceListId: string) => void;
+  onCardDragEnd?: () => void;
 }
 
 const List: React.FC<ListProps> = ({ 
@@ -28,10 +31,14 @@ const List: React.FC<ListProps> = ({
   onEditCard, 
   onDeleteCard, 
   onEditList, 
-  onDeleteList 
+  onDeleteList,
+  onCardDrop,
+  onCardDragStart,
+  onCardDragEnd
 }) => {
   const [isAddingCard, setIsAddingCard] = useState(false);
   const [newCardTitle, setNewCardTitle] = useState('');
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const handleAddCard = () => {
     if (newCardTitle.trim() && onAddCard) {
@@ -50,8 +57,40 @@ const List: React.FC<ListProps> = ({
     }
   };
 
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    
+    try {
+      const dragData = e.dataTransfer.getData('application/json');
+      const { cardId, sourceListId } = JSON.parse(dragData);
+      
+      if (onCardDrop && sourceListId !== id) {
+        onCardDrop(cardId, sourceListId, id);
+      }
+    } catch (error) {
+      console.error('Error handling card drop:', error);
+    }
+  };
+
   return (
-    <div className="list">
+    <div 
+      className={`list ${isDragOver ? 'drag-over' : ''}`}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
       <div className="list-header">
         <h3 className="list-title">{title}</h3>
         <div className="list-actions">
@@ -78,6 +117,9 @@ const List: React.FC<ListProps> = ({
             dueDate={card.dueDate}
             onEdit={onEditCard}
             onDelete={onDeleteCard}
+            onDragStart={onCardDragStart}
+            onDragEnd={onCardDragEnd}
+            sourceListId={id}
           />
         ))}
       </div>

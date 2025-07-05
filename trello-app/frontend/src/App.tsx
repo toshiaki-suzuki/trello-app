@@ -143,6 +143,41 @@ function App() {
     }
   };
 
+  const handleCardMove = (cardId: string, sourceListId: string, targetListId: string) => {
+    // Find the card to move
+    let cardToMove: CardData | null = null;
+    
+    // Remove card from source list
+    const updatedLists = lists.map(list => {
+      if (list.id === sourceListId) {
+        const cardIndex = list.cards.findIndex(card => card.id === cardId);
+        if (cardIndex !== -1) {
+          cardToMove = list.cards[cardIndex];
+          return {
+            ...list,
+            cards: list.cards.filter(card => card.id !== cardId)
+          };
+        }
+      }
+      return list;
+    });
+
+    // Add card to target list
+    if (cardToMove) {
+      const finalLists = updatedLists.map(list => {
+        if (list.id === targetListId) {
+          return {
+            ...list,
+            cards: [...list.cards, cardToMove]
+          };
+        }
+        return list;
+      });
+      
+      setLists(finalLists);
+    }
+  };
+
   return (
     <div className="App">
       <Board
@@ -154,6 +189,7 @@ function App() {
         onAddCard={handleAddCard}
         onEditCard={handleEditCard}
         onDeleteCard={handleDeleteCard}
+        onCardMove={handleCardMove}
       />
     </div>
   );

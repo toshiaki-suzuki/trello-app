@@ -24,6 +24,7 @@ interface BoardProps {
   onAddCard?: (listId: string, cardTitle: string) => void;
   onEditCard?: (cardId: string) => void;
   onDeleteCard?: (cardId: string) => void;
+  onCardMove?: (cardId: string, sourceListId: string, targetListId: string) => void;
 }
 
 const Board: React.FC<BoardProps> = ({
@@ -34,10 +35,12 @@ const Board: React.FC<BoardProps> = ({
   onDeleteList,
   onAddCard,
   onEditCard,
-  onDeleteCard
+  onDeleteCard,
+  onCardMove
 }) => {
   const [isAddingList, setIsAddingList] = useState(false);
   const [newListTitle, setNewListTitle] = useState('');
+  const [draggedCard, setDraggedCard] = useState<string | null>(null);
 
   const handleAddList = () => {
     if (newListTitle.trim() && onAddList) {
@@ -53,6 +56,20 @@ const Board: React.FC<BoardProps> = ({
     } else if (e.key === 'Escape') {
       setIsAddingList(false);
       setNewListTitle('');
+    }
+  };
+
+  const handleCardDragStart = (cardId: string, sourceListId: string) => {
+    setDraggedCard(cardId);
+  };
+
+  const handleCardDragEnd = () => {
+    setDraggedCard(null);
+  };
+
+  const handleCardDrop = (cardId: string, sourceListId: string, targetListId: string) => {
+    if (onCardMove && sourceListId !== targetListId) {
+      onCardMove(cardId, sourceListId, targetListId);
     }
   };
 
@@ -75,6 +92,9 @@ const Board: React.FC<BoardProps> = ({
               onDeleteCard={onDeleteCard}
               onEditList={onEditList}
               onDeleteList={onDeleteList}
+              onCardDrop={handleCardDrop}
+              onCardDragStart={handleCardDragStart}
+              onCardDragEnd={handleCardDragEnd}
             />
           ))}
           
