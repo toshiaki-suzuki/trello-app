@@ -39,15 +39,23 @@ describe('Card Component', () => {
   });
 
   test('does not render description when not provided', () => {
-    const propsWithoutDescription = { ...mockProps };
-    delete propsWithoutDescription.description;
+    const propsWithoutDescription = {
+      id: mockProps.id,
+      title: mockProps.title,
+      dueDate: mockProps.dueDate,
+      sourceListId: mockProps.sourceListId
+    };
     render(<Card {...propsWithoutDescription} />);
     expect(screen.queryByText('Test description')).not.toBeInTheDocument();
   });
 
   test('does not render due date when not provided', () => {
-    const propsWithoutDueDate = { ...mockProps };
-    delete propsWithoutDueDate.dueDate;
+    const propsWithoutDueDate = {
+      id: mockProps.id,
+      title: mockProps.title,
+      description: mockProps.description,
+      sourceListId: mockProps.sourceListId
+    };
     render(<Card {...propsWithoutDueDate} />);
     expect(screen.queryByText(/Due:/)).not.toBeInTheDocument();
   });
