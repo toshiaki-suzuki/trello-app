@@ -59,11 +59,11 @@ const Board: React.FC<BoardProps> = ({
   };
 
   const handleCardDragStart = (cardId: string, sourceListId: string) => {
-    // Could be used for future drag state management
+    // 将来のドラッグ状態管理に使用可能
   };
 
   const handleCardDragEnd = () => {
-    // Could be used for future drag state management
+    // 将来のドラッグ状態管理に使用可能
   };
 
   const handleCardDrop = (cardId: string, sourceListId: string, targetListId: string) => {

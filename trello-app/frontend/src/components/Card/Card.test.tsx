@@ -134,7 +134,7 @@ describe('Card Component', () => {
     render(<Card {...mockProps} {...mockCallbacks} />);
     const cardElement = screen.getByText('Test Card').closest('.card');
     
-    // Start drag
+    // ドラッグ開始
     const dragStartEvent = new Event('dragstart', { bubbles: true });
     Object.defineProperty(dragStartEvent, 'dataTransfer', {
       value: {
@@ -144,7 +144,7 @@ describe('Card Component', () => {
     });
     fireEvent(cardElement!, dragStartEvent);
     
-    // End drag
+    // ドラッグ終了
     fireEvent.dragEnd(cardElement!);
     expect(cardElement).not.toHaveClass('dragging');
   });

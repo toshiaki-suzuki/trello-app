@@ -144,7 +144,7 @@ function App() {
   };
 
   const handleCardMove = (cardId: string, sourceListId: string, targetListId: string) => {
-    // Find the card to move first
+    // まず移動するカードを見つける
     let cardToMove: CardData | undefined;
     
     for (const list of lists) {
@@ -154,13 +154,13 @@ function App() {
       }
     }
     
-    // If card is not found, exit early
+    // カードが見つからない場合は早期終了
     if (!cardToMove) {
       console.error(`Card with id ${cardId} not found in list ${sourceListId}`);
       return;
     }
     
-    // Remove card from source list and add to target list
+    // ソースリストからカードを削除し、ターゲットリストに追加
     setLists(lists.map(list => {
       if (list.id === sourceListId) {
         return {

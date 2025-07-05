@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import Board from './index';
 
-// Mock the List component
+// Listコンポーネントをモック
 jest.mock('../List', () => {
   return function MockList({ 
     id, 
@@ -289,7 +289,7 @@ describe('Board Component', () => {
     // Test drag end callback
     const dragEndButtons = screen.getAllByText('Drag End');
     fireEvent.click(dragEndButtons[0]);
-    // Should not call onCardMove on drag end either
+    // ドラッグ終了時もonCardMoveを呼び出すべきではない
     expect(mockCallbacks.onCardMove).toHaveBeenCalledTimes(1);
   });
 
@@ -318,9 +318,9 @@ describe('Board Component', () => {
   test('handles card drop between different lists', () => {
     render(<Board {...mockProps} {...mockCallbacks} />);
     
-    // Simulate dropping a card from one list to another
+    // あるリストから別のリストへのカードドロップをシミュレート
     const dropButtons = screen.getAllByText('Drop Card');
-    fireEvent.click(dropButtons[1]); // Click drop on second list
+    fireEvent.click(dropButtons[1]); // 2番目のリストでドロップをクリック
     
     expect(mockCallbacks.onCardMove).toHaveBeenCalledWith('card-1', 'source-list', 'list-2');
   });

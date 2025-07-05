@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import App from './App';
 
-// Mock window.prompt for edit operations
+// 編集操作用のwindow.promptをモック
 const mockPrompt = jest.fn();
 Object.defineProperty(window, 'prompt', {
   writable: true,
@@ -174,13 +174,13 @@ describe('App Integration Tests', () => {
     // Trigger drop on In Progress list
     fireEvent(inProgressList!, dropEvent);
     
-    // Card should have moved to In Progress list
-    // Note: This is a simplified test - in real implementation, 
-    // the card would be re-rendered in the new list
+    // カードはIn Progressリストに移動されるべき
+    // 注意: これは簡略化されたテスト - 実際の実装では、
+    // カードは新しいリストで再レンダリングされる
   });
 
   test('does not edit when prompt is cancelled', () => {
-    mockPrompt.mockReturnValue(null); // User cancelled
+    mockPrompt.mockReturnValue(null); // ユーザーがキャンセル
     render(<App />);
     
     const originalText = 'To Do';
@@ -195,7 +195,7 @@ describe('App Integration Tests', () => {
   });
 
   test('does not edit with empty input', () => {
-    mockPrompt.mockReturnValue('   '); // Only whitespace
+    mockPrompt.mockReturnValue('   '); // 空白のみ
     render(<App />);
     
     const originalText = 'To Do';

@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import List from './index';
 
-// Mock the Card component
+// Cardコンポーネントをモック
 jest.mock('../Card', () => {
   return function MockCard({ id, title, onEdit, onDelete, onDragStart, onDragEnd, sourceListId }: any) {
     return (

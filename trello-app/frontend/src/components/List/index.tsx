@@ -80,7 +80,7 @@ const List: React.FC<ListProps> = ({
         onCardDrop(cardId, sourceListId, id);
       }
     } catch (error) {
-      console.error('Error handling card drop:', error);
+      console.error('カードドロップの処理中にエラーが発生しました:', error);
     }
   };
 
