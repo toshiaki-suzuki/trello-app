@@ -1,0 +1,133 @@
+.board {
+  height: 100vh;
+  background: linear-gradient(135deg, #0079bf 0%, #005a8b 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.board-header {
+  padding: 16px 24px;
+  background: rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.board-title {
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.board-content {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 16px;
+}
+
+.lists-container {
+  display: flex;
+  align-items: flex-start;
+  min-height: 100%;
+  padding-bottom: 16px;
+}
+
+.add-list-trigger {
+  background: rgba(255, 255, 255, 0.24);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  width: 272px;
+  min-height: 44px;
+  text-align: left;
+  transition: background-color 0.2s ease;
+  margin-right: 12px;
+}
+
+.add-list-trigger:hover {
+  background: rgba(255, 255, 255, 0.36);
+}
+
+.add-list-form {
+  background-color: #ebecf0;
+  border-radius: 8px;
+  padding: 12px;
+  width: 272px;
+  margin-right: 12px;
+}
+
+.add-list-input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #0079bf;
+  border-radius: 3px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.add-list-input:focus {
+  outline: none;
+  border-color: #026aa7;
+}
+
+.add-list-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.add-list-btn {
+  background-color: #0079bf;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-list-btn:hover {
+  background-color: #026aa7;
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  color: #5e6c84;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #ddd;
+}
+
+/* Scrollbar styling for webkit browsers */
+.board-content::-webkit-scrollbar {
+  height: 8px;
+}
+
+.board-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.board-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.board-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

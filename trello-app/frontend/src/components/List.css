@@ -1,0 +1,132 @@
+.list {
+  background-color: #ebecf0;
+  border-radius: 8px;
+  padding: 12px;
+  width: 272px;
+  min-height: 100px;
+  margin-right: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.list-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  color: #172b4d;
+  padding: 6px 8px;
+  border-radius: 3px;
+  flex-grow: 1;
+}
+
+.list-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.list:hover .list-actions {
+  opacity: 1;
+}
+
+.list-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.list-action-btn:hover {
+  background-color: #ddd;
+}
+
+.list-cards {
+  flex-grow: 1;
+  margin-bottom: 8px;
+}
+
+.add-card-trigger {
+  background: none;
+  border: none;
+  color: #5e6c84;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: left;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.add-card-trigger:hover {
+  background-color: #ddd;
+  color: #172b4d;
+}
+
+.add-card-form {
+  margin-top: 8px;
+}
+
+.add-card-input {
+  width: 100%;
+  min-height: 72px;
+  padding: 8px;
+  border: 2px solid #0079bf;
+  border-radius: 3px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.add-card-input:focus {
+  outline: none;
+  border-color: #026aa7;
+}
+
+.add-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  align-items: center;
+}
+
+.add-card-btn {
+  background-color: #0079bf;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-card-btn:hover {
+  background-color: #026aa7;
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  color: #5e6c84;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #ddd;
+}
