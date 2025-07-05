@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import List from './List';
+import List from '../List';
 import './Board.css';
 
 interface CardData {
