@@ -144,38 +144,37 @@ function App() {
   };
 
   const handleCardMove = (cardId: string, sourceListId: string, targetListId: string) => {
-    // Find the card to move
-    let cardToMove: CardData | null = null;
+    // Find the card to move first
+    let cardToMove: CardData | undefined;
     
-    // Remove card from source list
-    const updatedLists = lists.map(list => {
+    for (const list of lists) {
       if (list.id === sourceListId) {
-        const cardIndex = list.cards.findIndex(card => card.id === cardId);
-        if (cardIndex !== -1) {
-          cardToMove = list.cards[cardIndex];
-          return {
-            ...list,
-            cards: list.cards.filter(card => card.id !== cardId)
-          };
-        }
+        cardToMove = list.cards.find(card => card.id === cardId);
+        break;
+      }
+    }
+    
+    // If card is not found, exit early
+    if (!cardToMove) {
+      console.error(`Card with id ${cardId} not found in list ${sourceListId}`);
+      return;
+    }
+    
+    // Remove card from source list and add to target list
+    setLists(lists.map(list => {
+      if (list.id === sourceListId) {
+        return {
+          ...list,
+          cards: list.cards.filter(card => card.id !== cardId)
+        };
+      } else if (list.id === targetListId) {
+        return {
+          ...list,
+          cards: [...list.cards, cardToMove!]
+        };
       }
       return list;
-    });
-
-    // Add card to target list
-    if (cardToMove) {
-      const finalLists = updatedLists.map(list => {
-        if (list.id === targetListId) {
-          return {
-            ...list,
-            cards: [...list.cards, cardToMove]
-          };
-        }
-        return list;
-      });
-      
-      setLists(finalLists);
-    }
+    }));
   };
 
   return (

@@ -40,7 +40,6 @@ const Board: React.FC<BoardProps> = ({
 }) => {
   const [isAddingList, setIsAddingList] = useState(false);
   const [newListTitle, setNewListTitle] = useState('');
-  const [draggedCard, setDraggedCard] = useState<string | null>(null);
 
   const handleAddList = () => {
     if (newListTitle.trim() && onAddList) {
@@ -60,11 +59,11 @@ const Board: React.FC<BoardProps> = ({
   };
 
   const handleCardDragStart = (cardId: string, sourceListId: string) => {
-    setDraggedCard(cardId);
+    // Could be used for future drag state management
   };
 
   const handleCardDragEnd = () => {
-    setDraggedCard(null);
+    // Could be used for future drag state management
   };
 
   const handleCardDrop = (cardId: string, sourceListId: string, targetListId: string) => {
